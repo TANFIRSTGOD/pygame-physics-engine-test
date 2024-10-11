@@ -1,6 +1,7 @@
 import pygame
 import button
 import object_creation
+import window_creation
 
 pygame.init()
 
@@ -24,6 +25,7 @@ testBlock = object_creation.Block([255,255], [50,50], 1, 10, PRIMARY_COLOR, g)
 blocks = []
 
 clock = pygame.time.Clock()
+fps = 60
 
 running = True
 
@@ -37,6 +39,7 @@ while running:
 
         if spawnButton.handle_event(event):
            newBlock = object_creation.Block([255,255], [50,50], 1, 10, PRIMARY_COLOR, g)
+           window_creation.createBlock()
            blocks.append(newBlock)
         resetButton.handle_event(event)
 
@@ -59,6 +62,6 @@ while running:
 
     pygame.display.flip()
 
-    clock.tick(60)
+    clock.tick(fps)
 
 pygame.quit()
