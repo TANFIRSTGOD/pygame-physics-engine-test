@@ -38,10 +38,9 @@ while running:
                 running = False
 
         if spawnButton.handle_event(event):
-           newBlock = object_creation.Block([255,255], [50,50], 1, 10, PRIMARY_COLOR, g)
-           window_creation.createBlock()
+           win = window_creation.createBlock()
+           newBlock = object_creation.Block([win.return_x(),255], [50,50], 1, 10, PRIMARY_COLOR, g)
            blocks.append(newBlock)
-        resetButton.handle_event(event)
 
     for currentBlock in blocks:
         if currentBlock.position[1] >= SCREEN_HEIGHT:
