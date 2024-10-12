@@ -1,7 +1,7 @@
 import pygame
 import button
 import object_creation
-import window_creation
+import random
 
 pygame.init()
 
@@ -38,8 +38,7 @@ while running:
                 running = False
 
         if spawnButton.handle_event(event):
-           win = window_creation.createBlock()
-           newBlock = object_creation.Block([win.return_x(),255], [50,50], 1, 10, PRIMARY_COLOR, g)
+           newBlock = object_creation.Block([255,255], [50,50], 1, 10, (random.randint(0, 255), random.randint(0,255), random.randint(0,255)), g)
            blocks.append(newBlock)
 
     for currentBlock in blocks:
