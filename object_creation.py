@@ -15,12 +15,16 @@ class Block:
     def draw(self, screen):
         pygame.draw.rect(screen, self.color, self.rect)
 
-    def update(self):
+    def update(self, groundrects):
         maxFallSpeed = 80.5556
         if self.speed < maxFallSpeed:
             self.speed += self.g/60 #speed += gravity / frame rate
         else:
             self.speed += 0
+
+        for i in groundrects:
+            if self.rect.colliderect(i):
+                self.speed = 0
 
         self.rect = pygame.Rect(self.position[0], self.position[1], self.size[0], self.size[1])
 
