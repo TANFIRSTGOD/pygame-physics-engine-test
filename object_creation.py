@@ -29,3 +29,9 @@ class Block:
         self.rect = pygame.Rect(self.position[0], self.position[1], self.size[0], self.size[1])
 
         self.position[1] += self.speed
+
+class stationaryBlock:
+    def __init__(self, position, size, color):
+        self.position = position
+        self.size = size
+        self.color = color
