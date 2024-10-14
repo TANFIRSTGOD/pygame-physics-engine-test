@@ -23,6 +23,10 @@ resetButton = button.Button(x=725, y=85, width=50, height=50, text="Reset", text
 testBlock = object_creation.Block([255,255], [50,50], 1, 10, PRIMARY_COLOR, g)
 
 blocks = []
+stationary_blocks = []
+
+ground_test = object_creation.stationaryBlock([0, 575], [800, 25], PRIMARY_COLOR)
+stationary_blocks.append(ground_test)
 
 clock = pygame.time.Clock()
 fps = 60
@@ -44,9 +48,9 @@ while running:
     for currentBlock in blocks:
         if currentBlock.position[1] >= SCREEN_HEIGHT:
             blocks.pop(blocks.index(currentBlock))
-        currentBlock.update()
+        currentBlock.update(stationary_blocks)
 
-    testBlock.update()
+    testBlock.update(stationary_blocks)
 
     screen.fill(BACKGROUND_COLOR)
 
@@ -54,6 +58,9 @@ while running:
 
     for currentBlock in blocks:
         currentBlock.draw(screen)
+
+    for currentGroundBlock in stationary_blocks:
+        currentGroundBlock.draw(screen)
 
     spawnButton.draw(screen)
     resetButton.draw(screen)

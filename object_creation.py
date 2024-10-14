@@ -18,13 +18,19 @@ class Block:
     def update(self, groundrects):
         maxFallSpeed = 80.5556
         if self.speed < maxFallSpeed:
-            self.speed += self.g/60 #speed += gravity / frame rate
+            self.speed += self.g / 60
         else:
-            self.speed += 0
+            self.speed = maxFallSpeed
+            self.position[1] += self.speed
 
-        for i in groundrects:
-            if self.rect.colliderect(i):
+            # Check for collisions with groundrects
+        for groundrect in groundrects:
+            if self.rect.colliderect(groundrect):
+                self.position[1] = groundrect.top - self.size[1]  # Use groundrect.top
                 self.speed = 0
+
+    # Update the rect based on the new position
+        self.rect = pygame.Rect(self.position[0], self.position[1], self.size[0], self.size[1])
 
         self.rect = pygame.Rect(self.position[0], self.position[1], self.size[0], self.size[1])
 
@@ -35,3 +41,7 @@ class stationaryBlock:
         self.position = position
         self.size = size
         self.color = color
+        self.rect = pygame.Rect(self.position[0], self.position[1], self.size[0], self.size[1])
+
+    def draw(self, screen):
+        pygame.draw.rect(screen, self.color, self.rect)
